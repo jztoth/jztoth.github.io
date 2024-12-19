@@ -1,26 +1,220 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Tab</title>
+<title>MRes Proposal</title>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <style>
 div.ex1 {
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
 }
 </style>
 </head>
 
-
 <body style="background-color:White;">
 
 <DIV class="ex1">
 
-<DIV class=header><H1>John Toth .... file1.html</H1></DIV>
 
+<h2>Quantifying Land Cover Change in Dryland Environments using Convolutional Neural Networks and Remote Sensing Data</h2>
+
+<br>
+<h3>1. Introduction</h3>	
+<p>Drylands cover approximately 46% of the world’s land surface and are home to 3 billion people (IPCC, 2019). 
+They are extremely fragile ecosystems and susceptible to land degradation and desertification. 
+They are generally under-studied because they are often of low economic value and are difficult to assess with traditional 
+remote sensing techniques. This is due to several factors: 1. Spectral differences between dryland land covers (semi-dessert, grassland, 
+cultivated land, shrubland, savannah) are often quite subtle. 2. High seasonal and annual fluctuations in vegetation greenness due to 
+variations in precipitation can overwhelm background environmental changes. 3. Sparse shrubs and trees are difficult captured on common 
+20-30 m spatial resolution satellite images.</p>
+<p>
+I will use satellite remote sensing data and Convolutional Neural Networks (CNNs) to develop a methodology to accurately and 
+consistently classify land cover type in drylands. I will apply this methodology to Southern African drylands to quantify land cover change.
+</p>
+
+<br>
+<h3>2. Background (why this is an important topic)</h3>
+<p>Arid zones are characterized by water scarcity, drought, high climatic variability, and land degradation, including desertification 
+and loss of biodiversity (Gaur and Squires, 2018). The UN Convention to Combat Desertification (UNCCD) estimates that between 2015 and 2019 
+the world lost at least 100 million hectares of productive land each year to desertification, adding up to an area twice the size of 
+Greenland (UNCCD, 2023).</p>
+
+<p>
+Drylands are usually defined by the aridity index (AI) which is the ratio of annual precipitation to potential evapotranspiration; 
+Hyper-Arid < 0.05, Arid = 0.05-0.2, Semiarid = 0.2-0.5, Dry Subhumid = 0.5-0.65 (Safriel et al., 2005). In general, arid regions receive 
+less than 250 mm of precipitation per year. Semi-Arid regions receive 250-500 mm per year. Existing water shortages in drylands are 
+projected to increase over time due to population increase, land cover change, and climate change (Safriel et al., 2005).</p>
+
+<p>
+Drylands include desert, grassland, and savanna woodland biomes (Mortimore et al., 2009). They support 50% of the world's livestock, 
+44% of the world's cultivated land, and they are home to more than a third of the world’s population. Over 90% of these people live in 
+developing countries, many of them small scale farmers and herders, and have the world’s highest population growth rates (UN, 2011).</p>
+
+<p>
+Desertification refers to land degradation in arid, semi-arid and sub-humid areas, this degradation usually results from direct human
+ activities (mainly agriculture and urban expansion) and climate change. Globally, 24% of all land is degrading. Approximately 50% of this 
+ is within drylands, threatening the livelihoods of more than 1 billion people in 100 countries (UN, 2011). Drylands also suffer from water
+ shortages, floods, soil lose, soil degradation, low agricultural productivity, as well as human poverty and conflict often driven by scarce
+ natural resources.</p>
+
+<p>
+Dryland regions include the western USA and Mexico, southwestern South America, the Brazilian Caatiga, the Mediterranean basin, North Africa, 
+southern and eastern Africa, the Middle East, Iran, Afghanistan, Pakistan, and large parts of India, Central Asia, northwest China, and Mongolia, 
+and Australia (Figure 1).
+</p>
+
+
+<br>
+<h3>3. Previous Work: Traditional Methods</h3>
+<p>By analysing global precipitation and temperature datasets from 1948-2008 and climate model simulations for 1948-2100, Feng and Fu (2013) 
+showed that between 1950 and 2000 global drylands expanded approximately 4%, and that by the end of this century they will increase by a 
+further 10%. Using corrected climate model simulations Huang et al. (2016) estimate dryland biomes could expand by 11% to 23% by the end of the 
+century, and will then cover more than half of the world’s land surface.</p>
+<p>
+Quantifying changes in landcover in drylands using remote sensing is notoriously difficult for a number of reasons: Trees and shrubs are often 
+sparse and difficult to identify, and dark tree shadows can be misleading; Vegetation greenness is strongly controlled by seasonal and intra-annual
+ rainfall variations and it is easy to confuse an unexpected dry spell with land cover change; Subtle differences between native grasslands, 
+ invasive species, shrub-lands, savannah, and cultivated land are also difficult to delineate on satellite images.</p>
+<p>
+To overcome some of these problems Bastin et al. (2017) attempted to determine global dryland forest cover using very high resolution (~1m) 
+Google Earth images and visually counted trees for hundreds of thousands of sample landscapes, using an online participatory approach with 
+scientists and students from around the world. They estimate that of 61 million km2 of global drylands, 5.5 million km2 are open forest 
+(10-40% canopy cover), and 7.77 million km2 are closed forest (>40% canopy cover). These estimates are 40% to 195% higher than recent estimates 
+best upon Landsat data. They also indicate that the dryland forests are, surprisingly, slightly larger in area than the moist tropical forests.</p>
+<p>
+A Food and Agriculture Organisation (FAO) report on trees, forests, and land use in drylands (FAO, 2019) is based upon the same visual approach 
+as Bastin et al. (2017) but they also included other dryland biomes. They list six dryland categories; 1). Forest, land with trees higher 
+than 5 metres and a canopy cover of more than 10 percent. 2). Other wooded land, land with trees higher than 5 metres and a canopy cover 
+of 5 to 10 percent. 3). Cropland, includes cropped land and agroforestry systems where the vegetation structure falls below the thresholds 
+used for the forest land category. 4). Grassland, includes rangelands and pasture land not considered cropland or forest. 5). Built-up, 
+includes all developed land, including transportation infrastructure and human settlements of any size. 6). Barren land, includes mainly 
+sand and dunes, rock, ice (Figure 2). The definitions of these categories leave some room for ambiguity and highlight the difficulty in 
+simply defining land classification categories.</p>
+<p>
+Bastin et al. (2017) and FAO (2019) visually interpreted high-resolution images, but the most common methods for quantifying changing 
+dryland land cover are Aridity Index (from precipitation and temperature data), Normalised Difference Vegetative Index (NDVI), and 
+rain-use efficiency. </p>
+<p>
+Diouf and Lambin (2001) evaluated land cover degradation in a semi-arid pastoral region of Senegal, with annual rainfall of 100-400 mm. 
+The region is an open savanna and bush landscape. They reported that the greatest difficulty in assessing land-cover modifications in semi-arid 
+regions is to separate the effect of human activity from the effects of interannual climatic fluctuations. They concluded that land cover 
+modifications are best measured by changes in rain-use efficiency. This is a popular indicator used in drylands and is a ratio of NDVI to 
+precipitation; in healthy environments high rainfall will lead to high NDVI. The normalized difference vegetation index (NDVI) is itself 
+often used as a proxy variable for net primary production. Diouf and Lambin (2001) validated their results with detailed on-the-ground 
+measurement of biomass.</p>
+<p>
+On a more local scale, supervised classification on multi-spectral Landsat/Sentinel images is often used for land cover classification in 
+drylands. Matlhodi et al. (2019) and Mugari and Masundire (2022) both evaluated land-use and land cover (LULC) changes in Botswana using 
+Landsat imagery and supervised classification using a Maximum Likelihood classifier. Major LULC categories were vegetation, cropland, 
+bare land, shrub land, built-up area, tree savanna and water bodies. In the thirty-year period between 1984 and 2015, Matlhodi et al. (2019) 
+observed 29% losses for shrub land and 71% loses for tree savanna. Mugari and Masundire (2022) observed a decline in vegetation by 50 km2/year 
+between 1995 and 2016 and an increase in croplands (34 km2/year). Mugari and Masundire (2022) used three sets of Landsat images for the 
+post-rainy period of 1995, 2006, and 2016 (each year with 4 scenes). The dates were specifically chosen as vegetation, croplands and bare 
+lands are more distinct after the rainy season. Regions of interest were selected on each satellite image for training samples for supervised 
+classification, each region had between 80 and 150 individual training polygons.</p>
+
+<br>
+<h3>4. Previous Work: Deep Learning methods</h3>
+
+<p>
+More recently attention has turned to Deep Learning (DL) for land cover classification, with Convolutional Neural Networks (CNN), Recurrent 
+Neural Networks (RNN) and Generative Adversarial Networks (GAN) used in place of more traditional methods such as Decision Trees, Randon 
+Forests, or K-nearest neighbours (Cecili et al. 2023). Carranza-Garcia et al. (2019) report that the capacity of CNNs to encode spectral 
+and spatial information of remote sensing images has led to a substantial improvement in the efficiency of the land use and land cover (LULC) 
+classification, and that CNNs have better performance than other DL models. Cecili et al. (2023) also report that of the Deep Learning methods 
+CNNs have proved to be the most effective for LULC classification, with VGGNet, AlexNet, ResNet and DenseNet models most common. Cecili et al. 
+(2023) compared VGG16, DenseNet and ResNet models on Sentinel-2 data for LULC classification in the Rome area. 
+They found that the VGG16 model 
+(this is a classic deep CNN model with 13 convolution layers, 3 fully connected layers, and a 3x3 filter size) gave the best 
+result (71% accuracy).</p>
+
+</p>
+Luan et al. (2023) trained a classical CNN model on 0.6 m resolution Google Earth RGB images to improve the urban land classification 
+accuracy for seven dryland cities in Asia. They noted that in drylands it is more difficult to differentiate urban from non-urban areas 
+with remote sensing data due to a lack of distinct spectral response. They used a GoogLeNet InceptionV3 CNN model (Inception models can 
+have variable filter sizes) with five categories; vegetation, cultivated land, artificial surfaces, water bodies, and others. Typical 
+dryland samples were extracted from a public benchmark dataset derived from Google Earth high-resolution imagery for model training. 
+This dataset covered labelled land types in China and 10,000 labelled images of each land type in typical dryland regions were selected as 
+training samples. They obtained an overall accuracy of 92% which is significantly higher than the standard global land cover products, 
+e.g., ESA World Cover 2020, ESRI 2020 landcover, GlobalLand 30, FROM-GLC 2017, which have accuracies of between 75% and 61%.</p>
+
+
+<p>
+Kattenborn et al. (2021) reviewed the use of CNNs in vegetation remote sensing. They note that a series of recent studies have demonstrated 
+that CNNs are very effective at extracting a wide array of vegetation properties from remote sensing data, and that the ability of a CNN to 
+exploit spatial patterns particularly facilitates the value of very high spatial resolution data. Song et al (2019) comment on the trade-off 
+between spectrally-rich datasets which tend to have lower spatial resolutions (20-30 m) compared to high-resolution RGB and panchromatic 
+datasets (1-15 m). Higher spatial resolution also often results in less coverage.
+
+<p>
+CNNs can be 1D, 2D and 3D, where the number refers to the dimensions of the kernel (Kattenborn et al. 2021). 1D CNNs are less often used for 
+land cover classification because they do not explicitly consider spatial context. Most studies apply 2D CNNs, as these exploit spatial patterns 
+in imagery. The added value of spatial patterns, of 2D versus 1D CNNs, has also been demonstrated with medium-resolution Landsat data. 3D CNNs 
+are rarely used in Earth Observation (Kattenborn et al. 2021).
+
+<p>
+However, Song et al (2019) suggest that a large labelled training set needed for a traditional 2D CNN model is often not available for satellite 
+images. They propose that a 1D, single-pixel, CNN model will perform better than a 2D CNN model with a limited training data set, especially if 
+unmixing-based methods to decompose each pixel into multiple signals that reflect the signature of each constituent landcover type are used. Song et al. (2019) report that the most frequently used labelled land cover classification datasets (the US National Land Cover Database (NLCD), GeoCover, and GlobeLand30) have a spatial resolution of 30 meters, which is sufficient to identify large-scale objects but not small-scale objects. If the pixel contains more than one material class, classification performance decreases and reduces the effectiveness of the 2D model. At the same time, newer, high-resolution datasets (which are better for 2D models) may encourage sparse labelling since it is tedious and time consuming to label (Song et al. 2019). 
+
+<p>
+Carranza-Garcia et al. (2019) produced a general 2D CNN model with a fixed architecture for LULC classification from remote sensing data, 
+particularly hyperspectral and radar data. Their model was similar to a traditional AlexNet or VGG model but with only two convolutional layers 
+and a single fully connected layer. The first convolutional layer had 32 filters and the second layer had 64 filters. The stride for the 
+convolutions was 1, with same padding. The fully connected layer had 1024 neurons. The filter size was 3x3 with a ReLU activation function. 
+The stride for the Max Pooling was 2. A final Softmax layer was used for the classification with the number of neurons equal to the desired 
+number of classes. They report extremely high accuracy rates of over 96% on data from the Geoscience Remote Sensing Society (GRSS) DASE 
+competition website. 
+
+<p>
+Scott et al. (2017) noted that obtaining a sufficiently large training set is often the major problem for using CNNs in remote sensing; we have 
+a very large set of satellite images but lack labelled information. They used data augmentation (increasing the sample quantity by rotating or 
+flipping the existing training samples) and transfer learning (re-using a previously trained model) to increase the effectiveness of their models. 
+They tested GoogLeNet, ResNet, and CaffeNet CNNs on the UC Merced landcover data set. The UC Merced data set includes 21 classes with just 100 
+images per class (with a 256x256 pixel size). They obtained a classification accuracy of over 97% for all three models.
+
+<p>
+Gharbia et al. (2021) assessed different CNNs to classify land cover in Egypt along the Nile Valley and Delta. The models were trained on just 
+500 sub-images manually derived from Landsat data (from 5 full Landsat images), each of these sub-images was 227x227 pixels and represented 
+1 of 5 land cover classes (Water, Urban, Agriculture, Roads, Desert). Using augmentation techniques, the dataset was expanded to 3500 training 
+images. On the augmented dataset they obtained accuracies of 90% for an AlexNet CNN model, and 95% using a VGG16 CNN model.
+
+<p>
+Following on from the FAO visual assessment of dryland tree cover (FAO, 2019), Guirado et al. (2020) repeated the exercise but using a 
+InceptionV3 CNN model with Tensor Flow (this is one of the most widely used CNN models). They used very high resolution RGB images from 
+Google Earth (71,000 images), and used labelled data from the FAO Dry Lands Assessment. Images of non-Forest class were obtained from 
+Northwestern Polytechnical University NWPU-RESISC45 dataset. Guirado et al. (2020) reported that regions of low tree cover or high tree 
+cover were easier to assess than intermediate tree cover. They also showed that the models were most accurate when they did not include 
+non-forest classes (which can confuse the model), e.g. it is easier to simply quantify tree cover within forest areas rather than also 
+quantify non-forest areas. Guirado et al. (2020) also report that it is difficult to obtain very high resolution (VHR) images in many areas 
+of the globe, especially Africa. The overall accuracy of their model was 79%, which was higher than from the FOA study.
+</p>
+
+<br>
+<h3>5. Work Plan Outline</h3>
+
+Applications of CNNs for classification of arid landscapes are comparatively rare in the literature and they do not explicitly address the 
+precipitation problem (rapid changes in vegetation greenness following precipitation in drylands can lead to mis-classification of land cover). 
+The objective of this research project is to develop a CNN specifically for land cover classification in dry land environments using remote 
+sensing data. I propose to begin with a traditional CNN architecture (e.g. Carranza-Garcia et al. 2019) and adapt the architecture and 
+hyperparameters for dry land environments. Whether very high-resolution Google Earth RGB images or multispectral Landsat/Sentinel images 
+give the best results will be determined.
+
+<p>
+Southern Africa is a dryland region (mainly arid and semi-arid biomes) with global significance in terms of biodiversity (Figure 1). 
+However, it is subject to habitat loss and environmental degradation from unsustainable development, agriculture, alien species invasion, 
+climate change, and over exploitation of natural resources (Agence Francaise de Developpement, 2018). I will select a region in Southern 
+Africa to develop the dryland CNN model, depending upon the availability of remote sensing data and training data. I will use the model to 
+quantify land cover change over time.
+
+<p>
+Software used will be Python/Anaconda with Pytorch libraries and QGIS for mapping.</p>
+
+<br>
+<h3>6. References</h3>
 
 
 
