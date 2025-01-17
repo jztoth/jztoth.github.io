@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--All links to scripts and stylesheets should sit in this section-->
 <head>
-	<title>Leaflet Map</title>
+	<title>Map1</title>
 	<!--This is a link to the Leaflet stylesheet-->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> 
 	<!--This is a link to the Leaflet JS library-->
@@ -18,7 +18,7 @@
 	<SCRIPT type="text/javascript" >
 		
 		//Create the map object and set the centre point and zoom level 
-		var m = L.map('mapdiv').setView([54,-2], 10);
+		var m = L.map('mapdiv').setView([54.2,-2.1], 12);
 		
 		//Load tiles from open street map (you maybe have mapbox tiles here- this is fine) 
 		L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -26,6 +26,13 @@
 			maxZoom: 18
 		//add the basetiles to the map object	
 		}).addTo(m);
+		
+		var mypolygon = L.polygon([
+		[54.2, -2.15],
+		[54.2, -2.05],
+		[54.22, -2.1]])
+		
+		mypolygon.addTo(m);
 		
 	</SCRIPT>
 </BODY>
